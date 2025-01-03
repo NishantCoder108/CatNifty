@@ -8,7 +8,7 @@ contract ClawdiaNFT is ERC721 {
     uint256 private s_tokenCounter;
 
     mapping(uint256 => string) private s_tokenIdToUri;
-    mapping(string => uint256) private s_uriToTokenId;
+    mapping(string => bool) private s_uriToTokenId;
     constructor() ERC721("Clawdia", "CLAW") {
         s_tokenCounter = 0;
     }
@@ -20,10 +20,10 @@ contract ClawdiaNFT is ERC721 {
         //     bytes(s_tokenIdToUri[s_tokenCounter]).length == 0,
         //     "Token ID already minted"
         // );
-        require(s_uriToTokenId[tokenUri] == 0, "Token URI already minted");
+        require(s_uriToTokenId[tokenUri] == false, "Token URI already minted");
 
         s_tokenIdToUri[s_tokenCounter] = tokenUri;
-        s_uriToTokenId[tokenUri] = 1;
+        s_uriToTokenId[tokenUri] = true;
 
         _safeMint(msg.sender, s_tokenCounter);
         s_tokenCounter++;
