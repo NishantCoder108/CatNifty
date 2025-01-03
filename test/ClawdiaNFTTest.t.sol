@@ -74,9 +74,9 @@ contract ClawdiaNFTTest is Test {
         vm.prank(user);
         clawdiaNFT.mintNFT(TOKENURI);
 
-        vm.expectRevert("ERC721: token already minted");
+        vm.expectRevert("Token URI already minted");
         vm.prank(user);
-        clawdiaNFT.mintNFT(TOKENURI); // Attempt to mint same token ID
+        clawdiaNFT.mintNFT(TOKENURI);
     }
 
     function testTokenUriMatchesMintedToken() public {
